@@ -1,46 +1,67 @@
-# AIDLC Workshop
+# TODO List Web Application
 
-AIDLC (AI-Driven Development Life Cycle) 워크샵을 위한 사전 구성 프로젝트입니다.
+React + Express + SQLite 기반 TODO List PoC 웹 애플리케이션입니다.
 
-## 개요
+## 기능
 
-이 프로젝트는 AIDLC 워크샵 참가자들이 별도의 설정 없이 바로 실습을 시작할 수 있도록 필요한 파일과 구조를 미리 세팅해둔 템플릿입니다.
+- 이메일/비밀번호 회원가입 및 로그인
+- TODO 추가, 조회, 수정, 삭제
+- 완료/미완료 상태 토글
+- 필터링 (전체 / 완료 / 미완료)
 
-## 시작하기
+## 기술 스택
 
-1. 이 프로젝트를 클론하거나 다운로드합니다
-2. 프로젝트 디렉토리에서 Kiro IDE 또는 Kiro CLI를 실행합니다
-3. 추가 설정 없이 AIDLC 워크플로우를 바로 시작할 수 있습니다
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React, Tailwind CSS, shadcn/ui, React Router |
+| Backend | Node.js, Express |
+| Database | SQLite (better-sqlite3) |
+| Auth | bcryptjs, jsonwebtoken (JWT) |
 
+## 실행 방법
+
+### 1. 의존성 설치
+
+```bash
+npm run install:all
+```
+
+### 2. 개발 서버 실행
+
+```bash
+npm run dev
+```
+
+- Frontend: http://localhost:5173
+- Backend: http://localhost:3000
+
+### 3. 사용
+
+1. http://localhost:5173 접속
+2. 회원가입 (이메일 + 비밀번호 6자 이상)
+3. 로그인
+4. TODO 추가, 수정, 삭제, 완료 토글, 필터링
 
 ## 프로젝트 구조
 
 ```
-aidlc-workshop/
-├── .kiro/                          # Kiro 설정
-│   ├── steering/                   # AIDLC 워크플로우 규칙
-│   │   └── aws-aidlc-rules/
-│   └── aws-aidlc-rule-details/     # 상세 규칙 문서
-├── AGENTS.md                       # Agent 가이드 (IDE용)
-└── README.md                       # 프로젝트 설명
+├── client/                    # React Frontend
+│   ├── src/
+│   │   ├── components/        # UI Components
+│   │   ├── contexts/          # AuthContext
+│   │   ├── pages/             # LoginPage, RegisterPage, TodoPage
+│   │   ├── services/          # API Services
+│   │   ├── App.jsx            # Routing
+│   │   └── main.jsx           # Entry point
+│   └── package.json
+├── server/                    # Express Backend
+│   ├── src/
+│   │   ├── middleware/        # JWT Auth Middleware
+│   │   ├── models/            # User, Todo Models
+│   │   ├── routes/            # Auth, Todo Routes
+│   │   ├── services/          # Auth, Todo Services
+│   │   ├── db.js              # SQLite Setup
+│   │   └── index.js           # Express Server
+│   └── package.json
+└── package.json               # Root (concurrently)
 ```
-
-## 사전 구성 내용
-
-- **AIDLC 워크플로우 규칙**: Inception, Construction, Operations 단계별 가이드
-
-## 워크플로우
-
-AIDLC는 다음 단계로 구성됩니다:
-
-1. **Inception Phase**: 요구사항 분석, 설계, 계획 수립
-2. **Construction Phase**: 상세 설계, 코드 생성, 빌드 및 테스트
-3. **Operations Phase**: 배포 및 운영 (향후 확장 예정)
-
-## 요구사항
-
-- Kiro IDE 또는 Kiro CLI 설치
-
-## 라이선스
-
-워크샵 교육용 프로젝트입니다.
